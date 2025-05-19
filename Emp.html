@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Employee | Attendance System</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="navbar">
+    <img src="{{ url_for('static', filename='logo.jpg') }}" alt="Company Logo">
+    <div>
+      <a href="{{ url_for('dashboard') }}">Dashboard</a>
+      <a href="{{ url_for('employee') }}" class="active">Employee</a>
+      <a href="{{ url_for('live_attendance') }}">Live Attendance</a>
+    </div>
+  </div>
+
+  <div class="content">
+    <h2>Employee Section</h2>
+
+    <input type="text" id="searchInput" placeholder="Search by ID, Name, or Email">
+
+    <table id="employeeTable">
+      <thead>
+        <tr><th>ID</th><th>Name</th><th>Email</th><th>Phone</th></tr>
+      </thead>
+      <tbody>
+        {% for emp in employees %}
+        <tr>
+          <td>{{ emp.id }}</td>
+          <td>{{ emp.name }}</td>
+          <td>{{ emp.email }}</td>
+          <td>{{ emp.phone }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <button onclick="openForm()">Add New Employee</button>
+  </div>
+
+  <div id="popup-form" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,0.5);">
+    <div style="background:white; width:400px; margin:100px auto; padding:20px; border-radius:8px; position:relative;">
+      <span onclick="closeForm()" style="position:absolute; top:10px; right:15px; font-size:18px; cursor:pointer;">&times;</span>
+      <h3>Add New Employee</h3>
+      <form action="/add_employee" method="POST" enctype="multipart/form-data">
+        <label>Upload Face Image:</label>
+        <input type="file" name="face_image" accept="image/*"><br><br>
+
+        <label>Name:</label>
+        <input type="text" name="name" required><br><br>
+
+        <label>Email:</label>
+        <input type="email" name="email" required><br><br>
+
+        <label>Phone:</label>
+        <input type="text" name="phone" required><br><br>
+
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  </div>
+
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <script>alert("{{ messages[0] }}");</script>
+    {% endif %}
+  {% endwith %}
+
+  <script>
+    function openForm() {
+      document.getElementById("popup-form").style.display = "block";
+    }
+
+    function closeForm() {
+      document.getElementById("popup-form").style.display = "none";
+    }
+
+    document.getElementById("searchInput").addEventListener("keyup", function () {
+      var filter = this.value.toLowerCase();
+      var rows = document.querySelectorAll("#employeeTable tbody tr");
+      rows.forEach(function (row) {
+        var id = row.cells[0].textContent.toLowerCase();
+        var name = row.cells[1].textContent.toLowerCase();
+        var email = row.cells[2].textContent.toLowerCase();
+        row.style.display = (id.includes(filter) || name.includes(filter) || email.includes(filter)) ? "" : "none";
+      });
+    });
+  </script>
+</body>
+</html>

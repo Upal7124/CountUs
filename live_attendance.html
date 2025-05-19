@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Live Attendance</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="navbar">
+    <img src="{{ url_for('static', filename='logo.jpg') }}" alt="Company Logo">
+    <div>
+      <a href="{{ url_for('dashboard') }}">Dashboard</a>
+      <a href="{{ url_for('employee') }}">Employee</a>
+      <a href="{{ url_for('live_attendance') }}" class="active">Live Attendance</a>
+    </div>
+  </div>
+
+  <div class="content">
+    <h2>Live Attendance System</h2>
+    <p>Click the button below to start or stop face recognition attendance:</p>
+
+    <form method="POST" action="/start">
+      <button type="submit">Start</button>
+    </form>
+
+    <form method="POST" action="/stop">
+      <button type="submit">Stop</button>
+    </form>
+  </div>
+</body>
+</html>

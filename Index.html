@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dashboard | Attendance System</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="navbar">
+    <img src="{{ url_for('static', filename='logo.jpg') }}" alt="Company Logo">
+    <div>
+      <a href="{{ url_for('dashboard') }}" class="active">Dashboard</a>
+      <a href="{{ url_for('employee') }}">Employee</a>
+      <a href="{{ url_for('live_attendance') }}">Live Attendance</a>
+    </div>
+  </div>
+
+  <div class="content">
+    <h2>Dashboard</h2>
+<div class="summary">
+  <div class="dashboard-box total">Total Employees<br><strong>{{ total }}</strong></div>
+  <div class="dashboard-box present">Present Today<br><strong>{{ present }}</strong></div>
+  <div class="dashboard-box absent">Absent Today<br><strong>{{ absent }}</strong></div>
+</div>
+
+<h3>Employee Check-in/Check-out</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Check-in</th>
+      <th>Check-out</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for emp in present_employees %}
+    <tr>
+      <td>{{ emp.name }}</td>
+      <td>{{ emp.checkin }}</td>
+      <td>{{ emp.check_out}}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+  </div>
+</body>
+</html>
