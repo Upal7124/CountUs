@@ -1,0 +1,104 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f2f2f2;
+  color: #333;
+}
+
+.navbar {
+  background-color: #333;
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+}
+
+.navbar img {
+  height: 40px;
+  margin-right: auto;
+}
+
+.navbar a {
+  color: #fff;
+  text-decoration: none;
+  margin-left: 20px;
+  padding: 10px;
+}
+
+.navbar a:hover,
+.navbar a.active {
+  background-color: #555;
+  border-radius: 5px;
+}
+
+.content {
+  padding: 30px;
+  max-width: 1000px;
+  margin: auto;
+  background: #fff;
+  border-radius: 8px;
+  margin-top: 30px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #1d72b8;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin: 10px;
+}
+
+button:hover {
+  background-color: #135e96;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+table, th, td {
+  border: 1px solid #ccc;
+}
+
+th, td {
+  padding: 10px;
+  text-align: left;
+}
+
+input[type="text"], input[type="email"], input[type="file"] {
+  width: 90%;
+  padding: 8px;
+  margin: 5px 0;
+}
+
+.dashboard-box {
+  display: inline-block;
+  width: 200px;
+  height: 100px;
+  margin: 20px;
+  font-size: 18px;
+  font-weight: bold;
+  padding-top: 30px;
+  border-radius: 10px;
+}
+
+.dashboard-box.total {
+  background-color: #6c757d;
+  color: white;
+}
+
+.dashboard-box.present {
+  background-color: #28a745;
+  color: white;
+}
+
+.dashboard-box.absent {
+  background-color: #dc3545;
+  color: white;
+}
